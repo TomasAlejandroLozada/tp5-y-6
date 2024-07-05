@@ -1,0 +1,64 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+class CRaices {
+private:
+    double a, b, c;
+
+public:
+    CRaices(double coefA, double coefB, double coefC) {
+        a = coefA;
+        b = coefB;
+        c = coefC;
+    }
+
+    double getDiscriminante() {
+        return b * b - 4 * a * c;
+    }
+
+   
+    bool tieneRaices() {
+        return getDiscriminante() > 0;
+    }
+
+    bool tieneRaiz() {
+        return getDiscriminante() == 0;
+    }
+    void obtenerRaices() {
+        if (tieneRaices()) {
+            double discriminante = getDiscriminante();
+            double raiz1 = (-b + sqrt(discriminante)) / (2 * a);
+            double raiz2 = (-b - sqrt(discriminante)) / (2 * a);
+            cout << "Las dos posibles soluciones son: " << raiz1 << " y " << raiz2 << endl;
+        } else {
+            cout << "No hay dos soluciones distintas." << endl;
+        }
+    }
+
+    void obtenerRaiz() {
+        if (tieneRaiz()) {
+            double raiz = -b / (2 * a);
+            cout << "La única solución es: " << raiz << endl;
+        } else {
+            cout << "No hay una única solución." << endl;
+        }
+    }
+    void calcular() {
+        double discriminante = getDiscriminante();
+        if (discriminante > 0) {
+            obtenerRaices();
+        } else if (discriminante == 0) {
+            obtenerRaiz();
+        } else {
+            cout << "No hay soluciones reales." << endl;
+        }
+    }
+};
+
+int main() {
+    CRaices ecuacion(1, -3, 2);
+    ecuacion.calcular();
+
+    return 0;
+}
